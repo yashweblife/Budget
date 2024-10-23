@@ -1,50 +1,70 @@
-# Welcome to your Expo app 👋
+# Budget
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A very simple app to log grocery purchases.
 
-## Get started
 
-1. Install dependencies
+Table of Contents
 
-   ```bash
-   npm install
-   ```
+- [Stack](#stack)
+- [Getting Started](#getting-started)
+- [Info](#info)
 
-2. Start the app
 
-   ```bash
-    npx expo start
-   ```
 
-In the output, you'll find options to open the app in a
+### Stack
+- React Native
+- Expo
+- React Native Paper
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+### Getting Started
 ```bash
-npm run reset-project
+# clone repo
+git clone https://github.com/yashweblife/Budget
+
+# cd into repo
+cd Budget
+
+# install dependencies
+npm install
+
+# start dev app
+npm run start
+
+# build app
+npm run build
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-## Learn more
+#### Info
 
-To learn more about developing your project with Expo, look at the following resources:
+This app allows you to log grocery purchases and track your weekly budget.
+Set your weekly budget limit and see how you fair.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+It also has a graph to visualize your spending. and a list of purchases.
 
-## Join the community
+<div style="color:rgb(255,100,100)">This app targets android only(for now).</div>
 
-Join our community of developers creating universal apps.
+Contributions are welcome.
+Feature requests are also welcome. Leave an issue on [github](https://github.com/yashweblife/Budget/issues) 
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## Downloading
+- Send the built apk to your android device.
+- Install the apk on your device.
+   - The device may alert you that this app may be unsafe but that is just because its not on the play store.
+   - You can go through the code to ascertain safety. 😮‍💨
+   - We are not planning on hosting it on the play store.
+
+### Future Plans
+
+- Add a local server `sync` + `database` solution to offload device data.
+- Add a bill scanner to scan receipts.
+- Add share purchases feature.
+- Add location data to purchases.
+- Add weekly + monthly + yearly graphs.
+
+
+## License
+Not yet
+- Author: [Yash](https://github.com/yashweblife)
+- Source: [https://github.com/yashweblife/Budget](https://github.com/yashweblife/Budget)
