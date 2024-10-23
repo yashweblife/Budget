@@ -9,7 +9,7 @@ Table of Contents
 - [Getting Started](#getting-started)
 - [Info](#info)
 - [Downloading](#downloading)
-- [Future Plans](future-plans)
+- [Future Plans](#future-plans)
 
 ### Stack
 - React Native
