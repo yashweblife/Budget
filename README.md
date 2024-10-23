@@ -8,8 +8,8 @@ Table of Contents
 - [Stack](#stack)
 - [Getting Started](#getting-started)
 - [Info](#info)
-
-
+- [Downloading](#downloading)
+- [Future Plans](future-plans)
 
 ### Stack
 - React Native
@@ -54,6 +54,7 @@ Feature requests are also welcome. Leave an issue on [github](https://github.com
    - The device may alert you that this app may be unsafe but that is just because its not on the play store.
    - You can go through the code to ascertain safety. 😮‍💨
    - We are not planning on hosting it on the play store.
+- [GH release link](https://github.com/yashweblife/Budget/releases/tag/v0.1.0) download apk
 
 ### Future Plans
 
@@ -64,7 +65,7 @@ Feature requests are also welcome. Leave an issue on [github](https://github.com
 - Add weekly + monthly + yearly graphs.
 
 
-## License
-Not yet
+<hr/>
+
 - Author: [Yash](https://github.com/yashweblife)
 - Source: [https://github.com/yashweblife/Budget](https://github.com/yashweblife/Budget)
