@@ -1,4 +1,5 @@
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { PurchaseProvider } from '@/store/purchase';
 import SettingsProvider from '@/store/settings';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
@@ -28,13 +29,16 @@ export default function RootLayout() {
 
   return (
     <PaperProvider theme={MD3DarkTheme}>
-      <SettingsProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-          <Stack.Screen name="settings/index" options={{ headerShown: false }} />
-        </Stack>
-      </SettingsProvider>
+      <PurchaseProvider>
+        <SettingsProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+            <Stack.Screen name="settings/index" options={{ headerShown: false }} />
+            <Stack.Screen name="graphs/index" options={{ headerShown: false }} />
+          </Stack>
+        </SettingsProvider>
+      </PurchaseProvider>
     </PaperProvider>
   );
 }

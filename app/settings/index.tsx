@@ -21,7 +21,7 @@ export default function SettingsScreen() {
             backgroundColor: theme.colors.background,
         }}>
             <Appbar>
-                <Link href="(tabs)" asChild>
+                <Link href="/(tabs)" asChild>
                     <Appbar.BackAction />
                 </Link>
                 <Appbar.Content title="Settings" />
