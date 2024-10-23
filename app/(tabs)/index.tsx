@@ -1,70 +1,106 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
+import { SettingsContext } from "@/store/settings";
+import { Link } from "expo-router";
+import { useContext, useEffect, useState } from "react";
+import { View } from "react-native";
+import CircularProgress from "react-native-circular-progress-indicator";
+import { Appbar, Button, Dialog, FAB, Text, TextInput, useTheme } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
+import PurchaseContext from "../../store/purchase";
 export default function HomeScreen() {
+  const theme = useTheme();
+  const [openAddDialog, setOpenAddDialog] = useState(false);
+  const [dialogInput, setDialogInput] = useState<string>("");
+  const { sum, addToPurchasesList, getPurchasesList } = useContext(PurchaseContext);
+  const { budget, getWeeklyBudget } = useContext(SettingsContext)
+  useEffect(() => {
+    getPurchasesList()
+    getWeeklyBudget()
+    console.log(budget)
+  }, [])
+
+  const handleDialogAddButton = () => {
+    if (!dialogInput) return
+    addToPurchasesList(dialogInput);
+    setDialogInput("");
+    setOpenAddDialog(false);
+  }
+  const handleDialogCancelButton = () => {
+    setOpenAddDialog(false);
+    setDialogInput("");
+  }
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <SafeAreaView
+      style={{
+        backgroundColor: theme.colors.background,
+        flex: 1,
+        alignItems: "center"
+      }}>
+      <Appbar>
+        <Appbar.Content title="Home" />
+        <Link href="/settings" asChild>
+          <Appbar.Action icon="cog" />
+        </Link>
+      </Appbar>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          padding: 30,
+          borderRadius: 30,
+          marginVertical: 30
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 24,
+            fontWeight: "bold",
+            marginBottom: 30
+          }}
+        >Current Spend</Text>
+        <CircularProgress
+          value={sum}
+          radius={150}
+          maxValue={budget || 60}
+          progressValueColor={theme.colors.primary}
+          activeStrokeSecondaryColor={theme.colors.tertiary}
+          inActiveStrokeColor={theme.colors.tertiaryContainer}
+          valuePrefix={"$"}
+          strokeColorConfig={
+            [
+              {
+                value: 0,
+                color: theme.colors.primary
+              },
+              {
+                value: 30,
+                color: theme.colors.secondary
+              },
+              {
+                value: 60,
+                color: theme.colors.error
+              }
+            ]
+          }
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      </View>
+      <Dialog visible={openAddDialog} onDismiss={() => setOpenAddDialog(false)}>
+        <Dialog.Title>Add a Purchase</Dialog.Title>
+        <Dialog.Content>
+          <Text>Add a new purchase</Text>
+          <TextInput keyboardType="numeric" mode="outlined" value={dialogInput} onChangeText={setDialogInput} />
+        </Dialog.Content>
+        <Dialog.Actions>
+          <Button onPress={handleDialogCancelButton}>Cancel</Button>
+          <Button onPress={handleDialogAddButton}>Save</Button>
+        </Dialog.Actions>
+      </Dialog>
+      <FAB
+        style={{ position: "absolute", margin: 16, right: 0, bottom: 0 }}
+        icon="plus"
+        onPress={() => setOpenAddDialog(true)}
+      />
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
