@@ -1,5 +1,5 @@
 import { SettingsContext } from "@/store/settings";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
 import CircularProgress from "react-native-circular-progress-indicator";
@@ -100,6 +100,11 @@ export default function HomeScreen() {
         style={{ position: "absolute", margin: 16, right: 0, bottom: 0 }}
         icon="plus"
         onPress={() => setOpenAddDialog(true)}
+      />
+      <FAB
+        style={{ position: "absolute", margin: 16, left: 0, bottom: 0 }}
+        icon="graph"
+        onPress={() => { router.push("/graphs") }}
       />
     </SafeAreaView>
   );
